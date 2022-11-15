@@ -1,4 +1,11 @@
+/*
 
+Alumno : Suclle Suca, Michael Benjamin
+CUI: 20211794
+Docente: Oscar Ramirez Valdez
+Curso:Analisis de Diseño y Algoritmos
+
+*/
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,9 +14,11 @@ using namespace std;
 void imprimirArreglo(int *arregloaimprimir, int cantidad) {
   for (int i = 0; i < cantidad ; i++) {
       cout << arregloaimprimir[i]<< "  ";
-    cout << "\n";
   }
+    cout << "\n";
 }
+
+
 
 void mezcla (int *a, int ini, int med, int fin) {
     
@@ -47,29 +56,59 @@ void mezcla (int *a, int ini, int med, int fin) {
         aux[k] = a[j];
         j++;
         k++;
-        // Copiar los elementos ordenados de aux al vector "a"
-        for (int m = 0; m < fin-ini+1; m++){
-            a[ini + m] = aux[m];
-        }
+        
     }
-    cout<< "en funcion \n";
-    imprimirArreglo(aux, 5);
+    // Copiar los elementos ordenados de aux al vector "a"
+    for (int m = 0; m < fin-ini+1; m++){
+        a[ini + m] = aux[m];
+    }
     delete [] aux;
 }
 
+void merge_sort(int *a, int ini, int fin) { 
+    int med;
+    if (ini < fin) {
+        med = (ini + fin)/2; 
+        merge_sort(a, ini, med); 
+        merge_sort(a, med + 1, fin); 
+        mezcla(a, ini, med, fin); 
+    }
+} 
 
 
 int main(){
-    int array[5] = {45, 17, 23, 67, 21};
-    int ini = 0;
-    int med = 2;
-    int fin = 4;//size(array);
-    
+    //Ejercicio 1
+    cout<< "Ejercicio 1: \n";
+
+    int array1[5] = {45, 17, 23, 67, 21};
     cout<< "antes funcion \n";
-    imprimirArreglo(array, 5);
-    mezcla(array, ini, med, fin);
+    imprimirArreglo(array1, 5);
+    merge_sort(array1, 0, 4);
     cout<< "despues funcion \n";
-    imprimirArreglo(array, 5);
+    imprimirArreglo(array1, 5);
+
+
+    //Ejercicio 2
+    cout<< "\nEjercicio 2: \n";
+
+    int array2[8] = {6, 0, 3, 2, 5, 7, 4, 1};
+    cout<< "antes funcion \n";
+    imprimirArreglo(array2, 8);
+    merge_sort(array2, 0, 7);
+    cout<< "despues funcion \n";
+    imprimirArreglo(array2, 8);
+
+
+    //Ejercicio 3
+    cout<< "\nEjercicio 3: \n";
+
+    int array3[8] = {6, 5, 3, 1, 8, 7, 2, 4};
+    cout<< "antes funcion \n";
+    imprimirArreglo(array3, 8);
+    merge_sort(array3, 0, 7);
+    cout<< "despues funcion \n";
+    imprimirArreglo(array3, 8);
+
     return 0;
 }
 
